@@ -2,7 +2,9 @@
 
 ## About
 
-Skeleton application for future projects. The setup includes Symfony 6 with Doctrine, mysql, nginx and php docker containers, phpstan, phpunit and a GitHub workflow.
+Skeleton application for future projects.
+
+The setup includes Symfony 6, Doctrine, mysql, nginx and php docker containers, phpstan, phpunit and a GitHub workflow.
 
 ## Local Setup
 
@@ -13,12 +15,12 @@ docker-compose up -d
 
 ### Load Migrations
 ```shell
-php bin/console doctrine:migrations:migrate
+docker exec -it skeleton-php-container php bin/console doctrine:migrations:migrate --no-interaction
 ```
 
 ### Load Fixtures
 ```shell
-php bin/console doctrine:fixtures:load
+docker exec -it skeleton-php-container php bin/console doctrine:fixtures:load --no-interaction
 ```
 
 ### Visit In Browser
@@ -30,12 +32,29 @@ http://localhost:8080
 
 ### Drop Database
 ```shell
-php bin/console doctrine:database:drop --force
+docker exec -it skeleton-php-container php bin/console doctrine:database:drop --force
 ```
 
 ### Create Database
 ```shell
-php bin/console doctrine:database:create
+docker exec -it skeleton-php-container php bin/console doctrine:database:create
+```
+
+### Load Migrations
+```shell
+docker exec -it skeleton-php-container php bin/console doctrine:migrations:migrate --no-interaction
+```
+
+### Load Fixtures
+```shell
+docker exec -it skeleton-php-container php bin/console doctrine:fixtures:load --no-interaction
+```
+
+## Production Setup
+
+### Composer
+```shell
+composer install --no-dev --optimize-autoloader --no-interaction
 ```
 
 ### Load Migrations
@@ -43,7 +62,7 @@ php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate --no-interaction
 ```
 
-### Load Fixtures
+### Clear Cache
 ```shell
-php bin/console doctrine:fixtures:load
+php bin/console cache:clear
 ```

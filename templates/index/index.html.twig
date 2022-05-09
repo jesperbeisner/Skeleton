@@ -20,6 +20,7 @@
                                 <tr>
                                     <th scope="col">Id</th>
                                     <th scope="col">Username</th>
+                                    <th scope="col">Created</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -30,6 +31,9 @@
                                         </th>
                                         <td class="user-username-data">
                                             {{ user.username }}
+                                        </td>
+                                        <td class="user-created-data">
+                                            {{ user.created|date('d.m.Y - H:i:s')}}
                                         </td>
                                     </tr>
                                 {% endfor %}
