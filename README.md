@@ -52,6 +52,13 @@ docker exec -it skeleton-php-container php bin/console doctrine:fixtures:load --
 
 ## Production Setup
 
+### Edit Env Variables
+```shell
+nano .env.local
+>> APP_ENV=prod
+>> DATABASE_URL="mysql://[USERNAME]:[PASSWORD]@[REAL_SERVER_IP]:3306/main?serverVersion=8.0&charset=utf8mb4"
+```
+
 ### Composer
 ```shell
 composer install --no-dev --optimize-autoloader --no-interaction
@@ -65,4 +72,9 @@ php bin/console doctrine:migrations:migrate --no-interaction
 ### Clear Cache
 ```shell
 php bin/console cache:clear
+```
+
+### Docker
+```shell
+docker-compose up -d web php
 ```
